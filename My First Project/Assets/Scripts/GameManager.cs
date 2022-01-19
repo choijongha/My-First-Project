@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public Vector3 targetPosition;
     public bool selected;
     public GameObject seletedRingPrefabs;
     public GameObject mainCamera;
+    public TextMeshProUGUI nameText;
     void Start()
     {
     }
@@ -31,9 +32,9 @@ public class GameManager : MonoBehaviour
                 Debug.Log(hit.collider.name);
                 Vector3 targetPosition = GameObject.Find($"{hit.collider.name}").transform.position;
                 Instantiate(seletedRingPrefabs, targetPosition, transform.rotation);
+                nameText.text = hit.collider.name;
+
             }
-
-
         }
     }
 }
