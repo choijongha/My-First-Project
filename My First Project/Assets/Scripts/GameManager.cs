@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
     public GameObject mainCamera;
     public GameObject nameBox;
     public TextMeshProUGUI nameText;
+    public RectTransform rectTransform;
     void Start()
     {
+        rectTransform = nameBox.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -23,17 +25,18 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             selected = true;
+            Debug.Log(Input.mousePosition); 
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log(worldPoint);
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
 
             //If something was hit, the RaycastHit2D.collider will not be null.
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.name);
                 Vector2 targetPosition = GameObject.Find($"{hit.collider.name}").transform.position;
                 Instantiate(seletedRingPrefabs, targetPosition, transform.rotation);
-                nameText.text = hit.collider.name;
-                nameBox.transform.position = targetPosition - new Vector2(0, -20);
+
+                rectTransform.position = Camera.main.WorldToScreenPoint(targetPosition) - new Vector3(0,30);
                 nameBox.SetActive(true);
 
             }

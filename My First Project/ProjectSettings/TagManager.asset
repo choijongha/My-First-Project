@@ -41,9 +41,9 @@ TagManager:
   - name: Ground
     uniqueID: 3485906487
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Selected
     uniqueID: 3026471451
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
