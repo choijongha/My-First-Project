@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject nameBox;
     public TextMeshProUGUI nameText;
     public RectTransform rectTransform;
+
+    private Vector2 targetPosition;
+    private RaycastHit2D hit;
     void Start()
     {
         rectTransform = nameBox.GetComponent<RectTransform>();
@@ -24,22 +27,41 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            selected = true;
-            Debug.Log(Input.mousePosition); 
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(worldPoint);
-            RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
+            hit = Physics2D.Raycast(worldPoint, Vector2.zero);
 
-            //If something was hit, the RaycastHit2D.collider will not be null.
-            if (hit.collider != null)
+            BoolOnSelected();
+        }
+    }
+    
+    void BoolOnSelected()
+    {
+        if (hit.collider != null)
+        {
+            //Vector2 targetPosition = GameObject.Find($"{hit.collider.name}").transform.position;
+            targetPosition = hit.transform.position;
+            UIName();
+            if (!selected && !GameObject.FindGameObjectWithTag("SelectedRing"))
             {
-                Vector2 targetPosition = GameObject.Find($"{hit.collider.name}").transform.position;
-                Instantiate(seletedRingPrefabs, targetPosition, transform.rotation);
-
-                rectTransform.position = Camera.main.WorldToScreenPoint(targetPosition) - new Vector3(0,30);
+                selected = true;
                 nameBox.SetActive(true);
-
+                Instantiate(seletedRingPrefabs, targetPosition, transform.rotation);
+            }
+            else if (selected && GameObject.FindGameObjectWithTag("SelectedRing"))
+            {
+                GameObject.FindGameObjectWithTag("SelectedRing").transform.position = targetPosition;
             }
         }
+        else
+        {
+            selected = false;
+            Destroy(GameObject.FindGameObjectWithTag("SelectedRing"));
+            nameBox.SetActive(false);
+        }
+    }
+    void UIName()
+    {
+        nameText.text = hit.collider.name;
+        rectTransform.position = Camera.main.WorldToScreenPoint(targetPosition) - new Vector3(0, 30);
     }
 }
