@@ -134,8 +134,9 @@ GameObject:
   - component: {fileID: 366616647}
   - component: {fileID: 366616646}
   - component: {fileID: 366616645}
-  - component: {fileID: 366616644}
   - component: {fileID: 366616648}
+  - component: {fileID: 366616644}
+  - component: {fileID: 366616649}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -268,6 +269,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.58754826, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &366616649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366616643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881e57f185c2acc40a16a1d46e019087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +541,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2624a5c75c3eac141b566ac273bef5eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: 0
+  onSelected: 0
+  onOneClicked: 0
+  onDoubleClicked: 0
+  timerForDoubleClick: 0
+  delay: 0.5
   seletedRingPrefabs: {fileID: 23293695341771246, guid: 4beb7bab1afa38843833090fda1fac59, type: 3}
   mainCamera: {fileID: 519420028}
   nameBox: {fileID: 1876252802}
@@ -2832,6 +2849,7 @@ GameObject:
   - component: {fileID: 1982228823}
   - component: {fileID: 1982228822}
   - component: {fileID: 1982228821}
+  - component: {fileID: 1982228824}
   m_Layer: 0
   m_Name: Lote Book
   m_TagString: Untagged
@@ -2930,3 +2948,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1982228824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982228820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881e57f185c2acc40a16a1d46e019087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
