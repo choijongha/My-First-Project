@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private float timerForDoubleClick;
     private float delay = 0.5f;
     string selectedName;
+    string selectedDoubleName;
 
     public GameObject seletedRingPrefabs;
 
@@ -102,13 +103,21 @@ public class GameManager : MonoBehaviour
             Debug.Log("Double Click zoom");
             mainCamera.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y,-10);
             mainCamera.GetComponent<Camera>().orthographicSize = 1f;
-        }else if(onDoubleClicked && selectedName == hit.collider.name)
+            selectedDoubleName = hit.collider.name;
+        }
+        else if(onDoubleClicked && selectedName == selectedDoubleName)
         {
             onOneClicked = false;
             onDoubleClicked = false;
             Debug.Log("Double Click zoom out");
             mainCamera.transform.position = new Vector3(0,0,-10);
             mainCamera.GetComponent<Camera>().orthographicSize = 3f;
+        }else if(onDoubleClicked && selectedName != selectedDoubleName)
+        {
+            onOneClicked = false;
+            Debug.Log("Double Click zoom");
+            mainCamera.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, -10);
+            selectedDoubleName = hit.collider.name;
         }
     }
     void DoubleClickFalse()
