@@ -3,7 +3,12 @@ guid: 801ab58626c2d264e9c70642ccfe9b85
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - seletedRingPrefabs: {fileID: 23293695341771246, guid: 4beb7bab1afa38843833090fda1fac59, type: 3}
+  - mainCamera: {instanceID: 0}
+  - nameBox: {fileID: 2037489291655347243, guid: 5e8e700e6ed2ba94cadb7fb1b362efbd, type: 3}
+  - nameText: {instanceID: 0}
+  - rectTransform: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
