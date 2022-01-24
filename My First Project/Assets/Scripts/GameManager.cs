@@ -4,23 +4,24 @@ using UnityEngine;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
-    private bool onSelected;
-    private bool onOneClicked;
-    private bool onDoubleClicked;
-    private float timerForDoubleClick;
-    private float delay = 0.5f;
+    bool onSelected;
+    bool onOneClicked;
+    bool onDoubleClicked;
+    float timerForDoubleClick;
+    float doubleClickdelay;
     string selectedName;
     string selectedDoubleName;
 
-    public GameObject seletedRingPrefabs;
+    [SerializeField] GameObject seletedRingPrefabs;
+    [SerializeField] GameObject nameBox;
+    [SerializeField] GameObject panel;
+    [SerializeField] TextMeshProUGUI nameText;
 
-    private Camera mainCamera;
-    public GameObject nameBox;
-    public TextMeshProUGUI nameText;
-    private RectTransform rectTransform;
+    Camera mainCamera;
+    RectTransform rectTransform;
 
-    private Vector2 targetPosition;
-    private RaycastHit2D hit;
+    Vector2 targetPosition;
+    RaycastHit2D hit;
     private void Awake()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -29,26 +30,25 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        doubleClickdelay = 0.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        SelectedDown();
+        MouseClickDown();
         DoubleClickFalse();
          
         if(nameBox.activeSelf) UIName();
     }
-    void SelectedDown()
+    void MouseClickDown()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             hit = Physics2D.Raycast(worldPoint, Vector2.zero);
 
-            BoolOnonSelected();
-            
+            BoolOnonSelected();   
         }
     }
 
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
             InstantiateSelectRing();
             DoubleClick();
         }
+        
         else
         {
             onSelected = false;
@@ -124,12 +125,16 @@ public class GameManager : MonoBehaviour
     {
         if (onOneClicked)
         {
-            if (Time.time - timerForDoubleClick > delay)
+            if (Time.time - timerForDoubleClick > doubleClickdelay)
             {
                 onOneClicked = false;
                 Debug.Log("onOneClicked out");
             }
         }
+    }
+    public void InfoObjects()
+    {
+        panel.SetActive(true);
     }
 }
 
