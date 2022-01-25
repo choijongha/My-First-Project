@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+
 public class GameManager : MonoBehaviour
 {
     bool onSelected;
@@ -38,7 +40,7 @@ public class GameManager : MonoBehaviour
     {
         MouseClickDown();
         DoubleClickFalse();
-        UIName();
+        
 
     }
     void MouseClickDown()
@@ -61,8 +63,12 @@ public class GameManager : MonoBehaviour
             onSelected = true;
             InstantiateSelectRing();
             DoubleClick();
+            UIName();
         }
-        
+        else if (EventSystem.current.IsPointerOverGameObject())
+        {
+
+        }
         else
         {
             onSelected = false;
