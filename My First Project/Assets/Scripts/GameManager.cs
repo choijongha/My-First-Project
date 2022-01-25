@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject nameBox;
     [SerializeField] GameObject panel;
     [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] TextMeshProUGUI obejectInfoText;
 
     Camera mainCamera;
     RectTransform rectTransform;
@@ -39,9 +40,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         MouseClickDown();
-        DoubleClickFalse();
-        
-
+        DoubleClickFalse();       
     }
     void MouseClickDown()
     {
@@ -49,11 +48,10 @@ public class GameManager : MonoBehaviour
         {
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             hit = Physics2D.Raycast(worldPoint, Vector2.zero);
-
-            BoolOnonSelected();   
+            BoolOnonSelected();
+            ObjectInfoText();
         }
     }
-
     void BoolOnonSelected()
     {
         if (hit.collider != null)
@@ -67,7 +65,7 @@ public class GameManager : MonoBehaviour
         }
         else if (EventSystem.current.IsPointerOverGameObject())
         {
-
+            
         }
         else
         {
@@ -75,8 +73,7 @@ public class GameManager : MonoBehaviour
             onOneClicked = false;
             Destroy(GameObject.FindGameObjectWithTag("SelectedRing"));
             nameBox.SetActive(false);
-        }
-        
+        }        
     }
     void UIName()
     {
@@ -90,7 +87,6 @@ public class GameManager : MonoBehaviour
             selectedName = "";
         }
         nameText.text = selectedName;
-
     }
     void InstantiateSelectRing()
     {
@@ -108,8 +104,7 @@ public class GameManager : MonoBehaviour
         if (!onOneClicked)
         {
             onOneClicked = true;
-            timerForDoubleClick = Time.time;
-            
+            timerForDoubleClick = Time.time;            
         }
         else if(!onDoubleClicked && onOneClicked && selectedName == hit.collider.name)
         {
@@ -157,6 +152,24 @@ public class GameManager : MonoBehaviour
     {
         mainCamera.transform.position = new Vector3(0, 0, -10);
         mainCamera.GetComponent<Camera>().orthographicSize = 3f;
+    }
+    void ObjectInfoText()
+    {
+        string a = obejectInfoText.text;
+        if(selectedName == "Player")
+        {
+            a = $"name is SinMull, that's mean is fresh gochu. ";
+        }
+        else if(selectedName == "Lote Book")
+        {
+            a = "is very expensive! so writing power upping";
+        }
+        else if(selectedName == "Yoga")
+        {
+            a = "is good healthy! so dex power upping";
+        }
+
+        obejectInfoText.text = $" {selectedName} {a} ";
     }
 }
 
