@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        doubleClickdelay = 0.5f;
+        doubleClickdelay = 0.3f;
     }
 
     // Update is called once per frame
@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
     {
         MouseClickDown();
         DoubleClickFalse();
-         
-        if(nameBox.activeSelf) UIName();
+        UIName();
+
     }
     void MouseClickDown()
     {
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         {
             //Vector2 targetPosition = GameObject.Find($"{hit.collider.name}").transform.position;
             targetPosition = hit.transform.position;
-            
+            onSelected = true;
             InstantiateSelectRing();
             DoubleClick();
         }
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         else
         {
             onSelected = false;
+            onOneClicked = false;
             Destroy(GameObject.FindGameObjectWithTag("SelectedRing"));
             nameBox.SetActive(false);
         }
@@ -73,15 +74,22 @@ public class GameManager : MonoBehaviour
     }
     void UIName()
     {
-        nameText.text = hit.collider.name;
-        rectTransform.position = Camera.main.WorldToScreenPoint(targetPosition) - new Vector3(0, 60);
+        if (onSelected)
+        {
+            nameBox.SetActive(true);
+            selectedName = hit.collider.name;
+            rectTransform.position = Camera.main.WorldToScreenPoint(targetPosition) - new Vector3(0, 60);
+        }else if (!onSelected)
+        {
+            selectedName = "";
+        }
+        nameText.text = selectedName;
+
     }
     void InstantiateSelectRing()
     {
-        if (!onSelected && !GameObject.FindGameObjectWithTag("SelectedRing"))
-        {
-            onSelected = true;
-            nameBox.SetActive(true);
+        if (onSelected && !GameObject.FindGameObjectWithTag("SelectedRing"))
+        {              
             Instantiate(seletedRingPrefabs, targetPosition, transform.rotation);
         }
         else if (onSelected && GameObject.FindGameObjectWithTag("SelectedRing"))
@@ -95,29 +103,26 @@ public class GameManager : MonoBehaviour
         {
             onOneClicked = true;
             timerForDoubleClick = Time.time;
-            selectedName = hit.collider.name;
+            
         }
         else if(!onDoubleClicked && onOneClicked && selectedName == hit.collider.name)
         {
             onOneClicked = false;
             onDoubleClicked = true;
-            Debug.Log("Double Click zoom");
-            mainCamera.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y,-10);
-            mainCamera.GetComponent<Camera>().orthographicSize = 1f;
             selectedDoubleName = hit.collider.name;
+            mainCameraZooming();
         }
-        else if(onDoubleClicked && selectedName == selectedDoubleName)
+        else if(onDoubleClicked && hit.collider.name == selectedDoubleName && selectedName == selectedDoubleName)
         {
             onOneClicked = false;
             onDoubleClicked = false;
-            Debug.Log("Double Click zoom out");
-            mainCamera.transform.position = new Vector3(0,0,-10);
-            mainCamera.GetComponent<Camera>().orthographicSize = 3f;
-        }else if(onDoubleClicked && selectedName != selectedDoubleName)
+            mainCameraZoomOut();
+            selectedDoubleName = "";
+        }
+        else if(onDoubleClicked && selectedName != selectedDoubleName)
         {
             onOneClicked = false;
-            Debug.Log("Double Click zoom");
-            mainCamera.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, -10);
+            mainCameraZooming();
             selectedDoubleName = hit.collider.name;
         }
     }
@@ -128,13 +133,24 @@ public class GameManager : MonoBehaviour
             if (Time.time - timerForDoubleClick > doubleClickdelay)
             {
                 onOneClicked = false;
-                Debug.Log("onOneClicked out");
             }
         }
     }
     public void InfoObjects()
     {
-        panel.SetActive(true);
+        if (!panel.activeSelf) panel.SetActive(true);
+        else if (panel.activeSelf) panel.SetActive(false);
+
+    }
+    void mainCameraZooming()
+    {
+        mainCamera.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y, -10);
+        mainCamera.GetComponent<Camera>().orthographicSize = 1f;
+    }
+    void mainCameraZoomOut()
+    {
+        mainCamera.transform.position = new Vector3(0, 0, -10);
+        mainCamera.GetComponent<Camera>().orthographicSize = 3f;
     }
 }
 
