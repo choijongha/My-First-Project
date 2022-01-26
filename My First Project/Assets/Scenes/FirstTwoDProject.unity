@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 366616645}
   - component: {fileID: 366616648}
   - component: {fileID: 366616644}
+  - component: {fileID: 366616649}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -345,6 +346,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.67190325, y: 0.910716}
   m_EdgeRadius: 0
+--- !u!114 &366616649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366616643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b71232d7522a849ac390d95ea32dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInfo: name is SinMull, that's mean is fresh gochu.
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +676,7 @@ GameObject:
   - component: {fileID: 687699524}
   - component: {fileID: 687699523}
   - component: {fileID: 687699525}
+  - component: {fileID: 687699526}
   m_Layer: 0
   m_Name: Yoga
   m_TagString: Untagged
@@ -727,12 +742,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 687699522}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.74, y: 0.04, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.472358, y: 0.88923997, z: 0.8379849}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1957541005}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &687699525
 BoxCollider2D:
@@ -760,6 +775,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 2.0314877}
   m_EdgeRadius: 0
+--- !u!114 &687699526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687699522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b71232d7522a849ac390d95ea32dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInfo: is good healthy! so dex power upping
 --- !u!1 &846645190
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +835,7 @@ MonoBehaviour:
   nameBox: {fileID: 1876252802}
   panel: {fileID: 343129291}
   nameText: {fileID: 637288312}
-  obejectInfoText: {fileID: 1812290197}
+  objectInfoText: {fileID: 1812290197}
 --- !u!1 &866421528
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,7 +929,7 @@ RectTransform:
   m_Children:
   - {fileID: 1876252803}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2928,7 +2956,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1535408364
 GameObject:
@@ -3363,6 +3391,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1876252802}
   m_CullTransparentMesh: 1
+--- !u!1 &1957541004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1957541005}
+  m_Layer: 0
+  m_Name: Objects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1957541005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957541004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.32235807, y: 0.33076006, z: -0.8379849}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1982228823}
+  - {fileID: 687699524}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1982228820
 GameObject:
   m_ObjectHideFlags: 0
@@ -3374,6 +3434,7 @@ GameObject:
   - component: {fileID: 1982228823}
   - component: {fileID: 1982228822}
   - component: {fileID: 1982228821}
+  - component: {fileID: 1982228824}
   m_Layer: 0
   m_Name: Lote Book
   m_TagString: Untagged
@@ -3458,20 +3519,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!4 &1982228823
-Transform:
+--- !u!224 &1982228823
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982228820}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.827, y: 0.159, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.8379849}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1957541005}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.41764194, y: 0.7192399}
+  m_SizeDelta: {x: 0.48, y: 0.48}
+  m_Pivot: {x: 0.49517742, y: 0.24112643}
+--- !u!114 &1982228824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982228820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b71232d7522a849ac390d95ea32dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInfo: is very expensive! so writing power upping
 --- !u!1 &2097994481
 GameObject:
   m_ObjectHideFlags: 0

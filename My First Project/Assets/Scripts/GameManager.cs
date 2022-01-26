@@ -11,14 +11,14 @@ public class GameManager : MonoBehaviour
     bool onDoubleClicked;
     float timerForDoubleClick;
     float doubleClickdelay;
-    string selectedName;
+    public string selectedName { get; private set; }
     string selectedDoubleName;
 
     [SerializeField] GameObject seletedRingPrefabs;
     [SerializeField] GameObject nameBox;
     [SerializeField] GameObject panel;
     [SerializeField] TextMeshProUGUI nameText;
-    [SerializeField] TextMeshProUGUI obejectInfoText;
+    public TextMeshProUGUI objectInfoText;
 
     Camera mainCamera;
     RectTransform rectTransform;
@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             hit = Physics2D.Raycast(worldPoint, Vector2.zero);
             BoolOnonSelected();
-            ObjectInfoText();
         }
     }
     void BoolOnonSelected()
@@ -64,9 +63,7 @@ public class GameManager : MonoBehaviour
             UIName();
         }
         else if (EventSystem.current.IsPointerOverGameObject())
-        {
-            
-        }
+        {}
         else
         {
             onSelected = false;
@@ -101,18 +98,22 @@ public class GameManager : MonoBehaviour
     }
     void DoubleClick()
     {
+        // 아무 클릭도 안되어있음
         if (!onOneClicked)
         {
             onOneClicked = true;
             timerForDoubleClick = Time.time;            
         }
-        else if(!onDoubleClicked && onOneClicked && selectedName == hit.collider.name)
+        // 한 번 클릭되었고 더블 클릭이 안된 상태에서 첫번째 클릭된 이름과 두번 째 클릭한 이름이 같을 때
+        else if(!onDoubleClicked && selectedName == hit.collider.name)
         {
             onOneClicked = false;
             onDoubleClicked = true;
             selectedDoubleName = hit.collider.name;
             mainCameraZooming();
         }
+        // 더블 클릭되었고 첫 번째 클릭된 이름과 두 번째 클릭한 이름이 같고 더블 클릭된 이름도 같을 때
+        // 더블 클릭된 오브젝트를 더블 클릭.
         else if(onDoubleClicked && hit.collider.name == selectedDoubleName && selectedName == selectedDoubleName)
         {
             onOneClicked = false;
@@ -120,6 +121,8 @@ public class GameManager : MonoBehaviour
             mainCameraZoomOut();
             selectedDoubleName = "";
         }
+        // 더블 클릭되었고 첫 번째 클릭된 이름과 더블 클릭된 이름이 다를 때 
+        // 더블 클릭된 오브젝트 외 다른 오브젝트 더블 클릭.
         else if(onDoubleClicked && selectedName != selectedDoubleName)
         {
             onOneClicked = false;
@@ -153,23 +156,6 @@ public class GameManager : MonoBehaviour
         mainCamera.transform.position = new Vector3(0, 0, -10);
         mainCamera.GetComponent<Camera>().orthographicSize = 3f;
     }
-    void ObjectInfoText()
-    {
-        string a = obejectInfoText.text;
-        if(selectedName == "Player")
-        {
-            a = $"name is SinMull, that's mean is fresh gochu. ";
-        }
-        else if(selectedName == "Lote Book")
-        {
-            a = "is very expensive! so writing power upping";
-        }
-        else if(selectedName == "Yoga")
-        {
-            a = "is good healthy! so dex power upping";
-        }
-
-        obejectInfoText.text = $" {selectedName} {a} ";
-    }
+    
 }
 
