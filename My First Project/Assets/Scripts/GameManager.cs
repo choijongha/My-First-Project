@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     float doubleClickdelay;
     public string selectedName { get; private set; }
     string selectedDoubleName;
+    string objectInfo;
 
     [SerializeField] GameObject seletedRingPrefabs;
     [SerializeField] GameObject nameBox;
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
             InstantiateSelectRing();
             DoubleClick();
             UIName();
+            ObjectInfoText();
         }
         else if (EventSystem.current.IsPointerOverGameObject())
         {}
@@ -145,6 +147,11 @@ public class GameManager : MonoBehaviour
         if (!panel.activeSelf) panel.SetActive(true);
         else if (panel.activeSelf) panel.SetActive(false);
 
+    }
+    void ObjectInfoText()
+    {
+        objectInfo = GameObject.Find($"{selectedName}").GetComponent<ObjectInfoScript>().objectInfoTextString;
+        objectInfoText.text = $" {selectedName} {objectInfo} ";
     }
     void mainCameraZooming()
     {
