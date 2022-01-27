@@ -233,6 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727baf085e3f39340bde99d950375aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onObjectUsed: 0
+  speed: 1
 --- !u!50 &366616645
 Rigidbody2D:
   serializedVersion: 4
@@ -830,7 +832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2624a5c75c3eac141b566ac273bef5eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onObjectUsed: 0
   seletedRingPrefabs: {fileID: 23293695341771246, guid: 4beb7bab1afa38843833090fda1fac59, type: 3}
   nameBox: {fileID: 1876252802}
   panel: {fileID: 343129291}
@@ -3169,8 +3170,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 846645192}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 366616644}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
         m_MethodName: ObjectUse
         m_Mode: 1
         m_Arguments:

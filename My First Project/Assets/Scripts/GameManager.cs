@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     bool onSelected;
     bool onOneClicked;
     bool onDoubleClicked;
-    public bool onObjectUsed;
+    
     float timerForDoubleClick;
     float doubleClickdelay;
     public string selectedName { get; private set; }
@@ -50,15 +50,7 @@ public class GameManager : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        if (onObjectUsed)
-        {
-            Vector3 targetPos = GameObject.Find($"{selectedName}").transform.position;
-            if (player.GetComponent<Collider2D>().OverlapPoint(targetPos))
-            {
-                onObjectUsed = false;
-            }
-            player.MovePosition(player.transform.position + targetPos* Time.fixedDeltaTime);
-        }
+        
     }
     void MouseClickDown()
     {
@@ -164,10 +156,7 @@ public class GameManager : MonoBehaviour
         if (!panel.activeSelf) panel.SetActive(true);
         else if (panel.activeSelf) panel.SetActive(false);
     }
-    public void ObjectUse()
-    {
-        onObjectUsed = true;
-    }
+    
     void ObjectInfoText()
     {
         objectInfo = GameObject.Find($"{selectedName}").GetComponent<ObjectInfoScript>().objectInfoTextString;
