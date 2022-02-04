@@ -8,7 +8,7 @@ public class ObjectInfoScript : MonoBehaviour
     public string objectInfoTextString;
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if(GameObject.Find("GameManager")) gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     
 }

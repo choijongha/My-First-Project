@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement : Unit
 {
     private GameManager gameManager;
     public bool onObjectUsed;
@@ -12,15 +12,9 @@ public class Movement : MonoBehaviour
     [SerializeField] float speed = 1f;
     void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (GameObject.Find("GameManager")) gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerRb = GetComponent<Rigidbody2D>();
     }
-
-    void Start()
-    {
-
-    }
-
     void FixedUpdate()
     {
         if (onObjectUsed)
@@ -30,10 +24,6 @@ public class Movement : MonoBehaviour
                 onObjectUsed = false;
             }
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-        }
-        else if (onObjectUsed)
-        {
-
         }
     }
     public void ObjectUse()

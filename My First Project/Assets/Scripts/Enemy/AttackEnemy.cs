@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class EnemyYul : Enemy
-{
-    
+public class AttakEnemy : Unit
+{/*
     private void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
-        Vector3 direction = player.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
+        direction = target.position - transform.position;
+        // À¯´Ö È¸Àü
+        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //rb.rotation = angle;
         direction.Normalize();
         movement = direction;
     }
@@ -22,8 +21,8 @@ public class EnemyYul : Enemy
     {
         MoveCharacter(movement);
     }
-    private void MoveCharacter(Vector2 direction)
+    protected virtual void MoveCharacter(Vector2 direction)
     {
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
-    }
+    }*/
 }
