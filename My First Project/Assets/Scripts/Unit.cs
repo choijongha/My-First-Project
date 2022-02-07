@@ -31,6 +31,8 @@ public class Unit : MonoBehaviour
     [SerializeField] protected float runTime;
     protected float currentTime;
 
+    private Vector3 randomDirec;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -45,7 +47,6 @@ public class Unit : MonoBehaviour
         if (!isDead)
         {
             Move();
-            Rotation();
             ElapseTime();
         }
     }
@@ -53,16 +54,7 @@ public class Unit : MonoBehaviour
     {
         if(isWalking || isRunning)
         {
-            rb.MovePosition(transform.position + transform.forward * applySpeed * Time.deltaTime);
-        }
-    }
-
-    protected void Rotation()
-    {
-        if(isWalking || isRunning)
-        {
-            Vector3 rotation = Vector3.Lerp(transform.eulerAngles, new Vector3(0f, direction.y, 0f), turnSpeed);
-            rb.MoveRotation(Quaternion.Euler(rotation));
+            rb.MovePosition(transform.position + randomDirec * applySpeed * Time.deltaTime);
         }
     }
     protected void ElapseTime()
@@ -82,8 +74,23 @@ public class Unit : MonoBehaviour
         anim.SetBool("Running", isRunning);
         applySpeed = walkSpeed;
 
-        direction.Set(0f, Random.Range(0f, 360f), 0f);
+        int randomDirection = Random.Range(0, 3);
 
+        if(randomDirection == 0)
+        {
+            randomDirec = transform.up;
+        }else if(randomDirection == 1)
+        {
+            randomDirec = transform.right;
+        }else if(randomDirection == 2)
+        {
+            randomDirec = -transform.right;
+        }else if(randomDirection == 3)
+        {
+            randomDirec = -transform.up;
+        }
+        direction.Set(0f, Random.Range(0f, 360f), 0f);
+        Debug.Log(randomDirec);
     }
 
     protected void TryWalk()

@@ -163,6 +163,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4662893422907269198, guid: ef0bd88e81d74874da9f12d5a85a75e1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662893422907269198, guid: ef0bd88e81d74874da9f12d5a85a75e1, type: 3}
       propertyPath: turnSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -242,6 +246,10 @@ PrefabInstance:
     - target: {fileID: 2447863191489580707, guid: 2f8b9a8c5e8fc124b8c9e772a5063654, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2447863191489580708, guid: 2f8b9a8c5e8fc124b8c9e772a5063654, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2447863191489580710, guid: 2f8b9a8c5e8fc124b8c9e772a5063654, type: 3}
       propertyPath: m_FlipX
@@ -434,9 +442,9 @@ MonoBehaviour:
   walkSpeed: 10
   runSpeed: 20
   turnSpeed: 10
-  walkTime: 5
-  waitTime: 2
-  runTime: 3
+  walkTime: 2
+  waitTime: 5
+  runTime: 1
 --- !u!212 &1364229949
 SpriteRenderer:
   m_ObjectHideFlags: 0
