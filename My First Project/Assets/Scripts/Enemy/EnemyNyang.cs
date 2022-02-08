@@ -19,7 +19,6 @@ public class EnemyNyang : NonAttackEnemy
             Wait();
         else if (_random == 1)
             TryWalk();
-        Debug.Log(_random);
     }
 
     private void Wait()  // ´ë±â

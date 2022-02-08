@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2447863191489580708}
   - component: {fileID: 2447863191489580713}
   - component: {fileID: 2447863191489580714}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -141,11 +141,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2447863191489580707}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 727baf085e3f39340bde99d950375aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  hp: 0
+  mana: 0
+  damage: 0
+  critical: 0
+  anim: {fileID: 0}
+  walkSpeed: 0
+  runSpeed: 0
+  turnSpeed: 0
+  walkTime: 0
+  waitTime: 0
+  runTime: 0
   onObjectUsed: 0
   speed: 5
 --- !u!114 &2447863191489580713

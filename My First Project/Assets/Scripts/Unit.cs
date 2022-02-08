@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Unit : MonoBehaviour
 {
+    LayerMask boundaryMask;
     [SerializeField] protected Transform target;
     //[SerializeField] protected float moveSpeed;   
     [SerializeField] float hp;
@@ -36,6 +37,7 @@ public class Unit : MonoBehaviour
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        boundaryMask = LayerMask.GetMask("boundary");
     }
     private void Start()
     {
@@ -44,10 +46,19 @@ public class Unit : MonoBehaviour
     }
     private void Update()
     {
+
+    }
+    private void FixedUpdate()
+    {
         if (!isDead)
         {
             Move();
             ElapseTime();
+        }
+
+        if (Physics2D.Raycast(transform.position, randomDirec, 1.0f, boundaryMask))
+        {
+            Reset();
         }
     }
     protected void Move()
@@ -74,7 +85,7 @@ public class Unit : MonoBehaviour
         anim.SetBool("Running", isRunning);
         applySpeed = walkSpeed;
 
-        int randomDirection = Random.Range(0, 3);
+        int randomDirection = Random.Range(0, 4);
 
         if(randomDirection == 0)
         {
@@ -89,8 +100,7 @@ public class Unit : MonoBehaviour
         {
             randomDirec = -transform.up;
         }
-        direction.Set(0f, Random.Range(0f, 360f), 0f);
-        Debug.Log(randomDirec);
+        //direction.Set(0f, Random.Range(0f, 360f), 0f);
     }
 
     protected void TryWalk()
