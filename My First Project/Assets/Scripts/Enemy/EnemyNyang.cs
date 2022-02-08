@@ -24,7 +24,6 @@ public class EnemyNyang : NonAttackEnemy
     private void Wait()  // 대기
     {
         currentTime = waitTime;
-        Debug.Log("대기");
     }
 
 }

@@ -85,21 +85,7 @@ public class Unit : MonoBehaviour
         anim.SetBool("Running", isRunning);
         applySpeed = walkSpeed;
 
-        int randomDirection = Random.Range(0, 4);
-
-        if(randomDirection == 0)
-        {
-            randomDirec = transform.up;
-        }else if(randomDirection == 1)
-        {
-            randomDirec = transform.right;
-        }else if(randomDirection == 2)
-        {
-            randomDirec = -transform.right;
-        }else if(randomDirection == 3)
-        {
-            randomDirec = -transform.up;
-        }
+        
         //direction.Set(0f, Random.Range(0f, 360f), 0f);
     }
 
@@ -109,7 +95,12 @@ public class Unit : MonoBehaviour
         isWalking = true;
         anim.SetBool("Walking", isWalking);
         applySpeed = walkSpeed;
-        Debug.Log("°È±â");
+
+        int randomDirectionX = Random.Range(-1, 2);
+        int randomDirectionY = Random.Range(-1, 2);
+
+        randomDirec = new Vector3(randomDirectionX, randomDirectionY);
+
     }
 
     public virtual void Damage(int dmg, Vector3 targetPos)

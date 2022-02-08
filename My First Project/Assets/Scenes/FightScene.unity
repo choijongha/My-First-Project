@@ -564,11 +564,11 @@ MonoBehaviour:
   damage: 10
   critical: 10
   anim: {fileID: 1364229953}
-  walkSpeed: 5
+  walkSpeed: 3
   runSpeed: 20
   turnSpeed: 10
-  walkTime: 2
-  waitTime: 2
+  walkTime: 1
+  waitTime: 1
   runTime: 1
 --- !u!212 &1364229949
 SpriteRenderer:
