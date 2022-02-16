@@ -9,18 +9,35 @@ public class Movement : Unit
     private Vector3 targetPos;
     private Rigidbody2D playerRb;
     private Vector3 playerPos;
+    private Vector3 directionVector;
     Vector2 move;
     [SerializeField] float speed = 10f;
+    [SerializeField] GameObject forwardPoint;
     void Awake()
     {
         if (GameObject.Find("GameManager")) gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerRb = GetComponent<Rigidbody2D>();
     }
+    private void Start()
+    {
+        
+    }
+    private void Update()
+    {
+        
+    }
     void FixedUpdate()
     {
-        move.x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        move.y = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        transform.Translate(move.x, move.y, transform.position.z);
+        move.x = Input.GetAxis("Horizontal") ;
+        move.y = Input.GetAxis("Vertical");
+
+        forwardPoint.transform.localPosition = new Vector3(move.x, move.y);
+        
+        float moveSpeedX = move.x * speed * Time.deltaTime;
+        float moveSpeedY = move.y *speed * Time.deltaTime;
+
+        transform.Translate(moveSpeedX, moveSpeedY, transform.position.z);
+        
         if (onObjectUsed)
         {           
             if (GetComponent<Collider2D>().OverlapPoint(targetPos))
