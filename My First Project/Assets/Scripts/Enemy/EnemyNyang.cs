@@ -24,6 +24,7 @@ public class EnemyNyang : NonAttackEnemy
     private void Wait()  // ´ë±â
     {
         currentTime = waitTime;
+        rb.velocity = Vector2.zero;
     }
 
 }

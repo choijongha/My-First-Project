@@ -65,13 +65,15 @@ public class Unit : MonoBehaviour
     {
         if(isWalking || isRunning)
         {
-            rb.MovePosition(transform.position + randomDirec * applySpeed * Time.deltaTime);
+            rb.velocity = randomDirec * walkSpeed * Time.deltaTime;
+            anim.SetFloat("MoveX", rb.velocity.x);
         }
     }
     protected void ElapseTime()
     {
         if (isAction)
         {
+            
             currentTime -= Time.deltaTime;
             if (currentTime <= 0) Reset();
         }
@@ -96,7 +98,7 @@ public class Unit : MonoBehaviour
         anim.SetBool("Walking", isWalking);
         applySpeed = walkSpeed;
 
-        int randomDirectionX = Random.Range(-1, 2);
+        int randomDirectionX = Random.Range(-1,2);
         int randomDirectionY = Random.Range(-1, 2);
 
         randomDirec = new Vector3(randomDirectionX, randomDirectionY);
