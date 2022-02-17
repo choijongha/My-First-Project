@@ -1048,7 +1048,7 @@ MonoBehaviour:
   damage: 10
   critical: 10
   anim: {fileID: 1364229953}
-  walkSpeed: 3
+  walkSpeed: 200
   runSpeed: 20
   turnSpeed: 10
   walkTime: 1
