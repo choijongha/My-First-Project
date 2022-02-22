@@ -10,6 +10,7 @@ public class Movement : Unit
     private Rigidbody2D playerRb;
     private Vector3 playerPos;
     private Vector3 directionVector;
+    private bool isPlayerMoving;
     Vector2 move;
     [SerializeField] float speed = 10f;
     [SerializeField] GameObject forwardPoint;
@@ -18,34 +19,12 @@ public class Movement : Unit
         if (GameObject.Find("GameManager")) gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerRb = GetComponent<Rigidbody2D>();
     }
-    private void Start()
-    {
-        
-    }
-    private void Update()
-    {
-        
-    }
     void FixedUpdate()
     {
-        move.x = Input.GetAxis("Horizontal") ;
-        move.y = Input.GetAxis("Vertical");
-
-        forwardPoint.transform.localPosition = new Vector3(move.x, move.y);
-        
-        float moveSpeedX = move.x * speed * Time.deltaTime;
-        float moveSpeedY = move.y *speed * Time.deltaTime;
-
-        transform.Translate(moveSpeedX, moveSpeedY, transform.position.z);
-        
-        if (onObjectUsed)
-        {           
-            if (GetComponent<Collider2D>().OverlapPoint(targetPos))
-            {
-                onObjectUsed = false;
-            }
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-        }
+        MoveKey();
+        IsMoving();
+        LookDirection();
+        DestroyTile();
     }
     public void ObjectUse()
     {
@@ -54,6 +33,41 @@ public class Movement : Unit
         playerPos = playerRb.position;
         
     }
+    public void MoveKey()
+    {
+        move.x = Input.GetAxis("Horizontal");
+        move.y = Input.GetAxis("Vertical");
+        playerRb.velocity = new Vector2(move.x, move.y) * speed * Time.deltaTime;
+    }
+    public void IsMoving()
+    {
+        if (move.x > .1 || move.x < -.1 || move.y > .1 || move.y < -.1)
+        {
+            isPlayerMoving = true;
 
+        }
+        else
+        {
+            isPlayerMoving = false;
+        }
+    }
+    public void LookDirection()
+    {
+        if (isPlayerMoving)
+        {
+            forwardPoint.transform.localPosition = new Vector3(move.x, move.y).normalized;
+        }
+    }
+    public void DestroyTile()
+    {
+        if (onObjectUsed)
+        {
+            if (GetComponent<Collider2D>().OverlapPoint(targetPos))
+            {
+                onObjectUsed = false;
+            }
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        }
+    }
 
 }
